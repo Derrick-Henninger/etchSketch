@@ -22,7 +22,7 @@ gridBtn.addEventListener("click", () => {
 )
 //when ready to run change sqrs to equal gridSize.
 let sqrsPerSide = 50;
-makeGrid (sqrsPerSide);
+makeGrid ();
 
 
 function makeGrid (){
@@ -38,17 +38,16 @@ function makeGrid (){
     gridRows.classList.add('rows');
     gridColumns.appendChild(gridRows);
     
-    
     }
   
-}}
-draw();
-function draw () {
-    let numberOfDivs = document.getElementsByClassName('column');
+}
 
-    numberOfDivs.addEventListener('mouseover', () => {
-        numberOfDivs.classList.add('highlight');    
-    })
+let numberOfDivs = document.getElementsByClassName('rows');
+for (let i = 0; i < numberOfDivs.length; i++) {
+    numberOfDivs[i].addEventListener('mouseover', () => {
+        numberOfDivs[i].classList.add('highlight');
+    });   
+}
 }
 
 
