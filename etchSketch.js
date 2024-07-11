@@ -14,18 +14,29 @@ body.appendChild(gridContainer);
 //without changing the total amount of pixels used. Use flexbox.
 
 
+//when ready to run change sqrs to equal gridSize.
+let sqrsPerSide;
+makeGrid (16);
 
 gridBtn.addEventListener("click", () => {
-    let gridSize = prompt("How many squares per side would you like in the grid below?");
-    return gridSize;
+    let sqrsPerSide = prompt("How many squares per side would you like in the grid below?");
+    removeGrid();
+    makeGrid(parseInt(sqrsPerSide));
 }
 )
-//when ready to run change sqrs to equal gridSize.
-let sqrsPerSide = 50;
-makeGrid ();
+function removeGrid () {
+    const divColumnsRemove = document.getElementsByClassName('column');
+    while (divColumnsRemove.length > 0) {
+        divColumnsRemove[0].remove();
+    }
+    const divRowsRemove = document.getElementsByClassName('rows');
+    while (divRowsRemove.length > 0) {
+        divRowsRemove[0].remove();
+    }
+    }
 
-
-function makeGrid (){
+function makeGrid (sqrsPerSide){
+    
  for (let i = 0; i < sqrsPerSide; i++){
 
     let gridColumns = document.createElement('div');
