@@ -13,17 +13,24 @@ body.appendChild(gridContainer);
 //should be able to enter 64 and have a brand new 64x64 grid pop up 
 //without changing the total amount of pixels used. Use flexbox.
 
-
-//when ready to run change sqrs to equal gridSize.
 let sqrsPerSide;
 makeGrid (16);
+
+// Add if then statement to block input of 100 or more, a zero or less and NaN.
+//Alert user of parameters for input.
 
 gridBtn.addEventListener("click", () => {
     let sqrsPerSide = prompt("How many squares per side would you like in the grid below?");
     removeGrid();
+    if (sqrsPerSide > 0 && sqrsPerSide < 101 && sqrsPerSide != NaN){
     makeGrid(parseInt(sqrsPerSide));
-}
-)
+    }
+    else {
+        makeGrid(16);
+        alert("Please enter a number from 1 to 100.");
+    }
+})
+
 function removeGrid () {
     const divColumnsRemove = document.getElementsByClassName('column');
     while (divColumnsRemove.length > 0) {
