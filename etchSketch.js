@@ -1,12 +1,10 @@
 
-
 const body =document.querySelector('body');
 const gridBtn = document.createElement('button');
 gridBtn.textContent = "Grid Size";
 const gridContainer = document.querySelector('#grid16x16');
 body.appendChild(gridBtn);
 body.appendChild(gridContainer);
-
 
 // Add button on top of screen to prompt user for how many squares 
 //per side they would like. The existing grid should be removed/replaced
@@ -54,18 +52,18 @@ function makeGrid (sqrsPerSide){
     for (let j = 0; j < sqrsPerSide; j++){
     let gridRows = document.createElement('div');
     gridRows.classList.add('rows');
+    gridRows.style.opacity = '0.1';
     gridColumns.appendChild(gridRows);
     
+        gridRows.addEventListener('mouseover', () => {
+            gridRows.classList.add('highlight');
+            let currentOpacity = parseFloat(gridRows.style.opacity);
+            if (currentOpacity < 1){
+            gridRows.style.opacity = (currentOpacity + 0.1).toFixed(1);
+            }
+    });  
     }
-  
-}
-
-let numberOfDivs = document.getElementsByClassName('rows');
-for (let i = 0; i < numberOfDivs.length; i++) {
-    numberOfDivs[i].addEventListener('mouseover', () => {
-        numberOfDivs[i].classList.add('highlight');
-    });   
-}
+    }
 }
 
 

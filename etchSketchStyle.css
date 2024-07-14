@@ -1,7 +1,7 @@
 
 #grid16x16 {
     display: flex;
-    border: .1px solid black;
+    border: 10px solid black;
     width: 500px;
     height: 500px;
    flex-direction: column;
@@ -9,13 +9,11 @@
 
 .column {
     display: flex;
-    border: .1px solid black;
     box-sizing: border-box;
     flex: 1;
 }
 
 .rows {
-    border: .1px solid black;
     box-sizing: border-box;
     flex: 1;
 }
