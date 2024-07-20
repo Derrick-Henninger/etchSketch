@@ -1,21 +1,21 @@
+//Default grid: rows class, default number of divs, mouseover = bg color and incremental shading
+    //If rainbow button clicked: gridRows background color is random rainbow colors for each div
+    //
 
 const body =document.querySelector('body');
 const gridBtn = document.createElement('button');
+const gridRainbowBtn = document.createElement('button');
+
 gridBtn.textContent = "Grid Size";
+gridRainbowBtn.textContent= 'Rainbow';
 const gridContainer = document.querySelector('#grid16x16');
 body.appendChild(gridBtn);
+body.appendChild(gridRainbowBtn);
 body.appendChild(gridContainer);
 
-// Add button on top of screen to prompt user for how many squares 
-//per side they would like. The existing grid should be removed/replaced
-//should be able to enter 64 and have a brand new 64x64 grid pop up 
-//without changing the total amount of pixels used. Use flexbox.
-
 let sqrsPerSide;
+let gridRows;
 makeGrid (16);
-
-// Add if then statement to block input of 100 or more, a zero or less and NaN.
-//Alert user of parameters for input.
 
 gridBtn.addEventListener("click", () => {
     let sqrsPerSide = prompt("How many squares per side would you like in the grid below?");
@@ -27,6 +27,7 @@ gridBtn.addEventListener("click", () => {
         makeGrid(16);
         alert("Please enter a number from 1 to 100.");
     }
+
 })
 
 function removeGrid () {
@@ -37,33 +38,40 @@ function removeGrid () {
     const divRowsRemove = document.getElementsByClassName('rows');
     while (divRowsRemove.length > 0) {
         divRowsRemove[0].remove();
+    } 
+};
+
+gridRainbowBtn.addEventListener('click', () => {
+    const gridRows = document.getElementsByClassName('rows');
+    const rainbowColors = ['blue', 'green', 'red', 'yellow', 'violet', 'orange'];
+    for (let i = 0; i < gridRows.length; i++)   {
+        let randomColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
+        gridRows[i].style.backgroundColor = randomColor;
     }
-    }
+});
 
 function makeGrid (sqrsPerSide){
     
- for (let i = 0; i < sqrsPerSide; i++){
-
-    let gridColumns = document.createElement('div');
-    gridColumns.classList.add('column');
-    gridContainer.appendChild(gridColumns);
+    for (let i = 0; i < sqrsPerSide; i++){
+        let gridColumns = document.createElement('div');
+        gridColumns.classList.add('column');
+        gridContainer.appendChild(gridColumns);
     
 
-    for (let j = 0; j < sqrsPerSide; j++){
-    let gridRows = document.createElement('div');
-    gridRows.classList.add('rows');
-    gridRows.style.opacity = '0.1';
-    gridColumns.appendChild(gridRows);
-    
-        gridRows.addEventListener('mouseover', () => {
-            gridRows.classList.add('highlight');
-            let currentOpacity = parseFloat(gridRows.style.opacity);
-            if (currentOpacity < 1){
-            gridRows.style.opacity = (currentOpacity + 0.1).toFixed(1);
+        for (let j = 0; j < sqrsPerSide; j++){
+            let gridRows = document.createElement('div');
+            gridRows.classList.add('rows');
+            gridRows.style.opacity = '0.0';
+            gridColumns.appendChild(gridRows);
+
+            gridRows.addEventListener('mouseover', () => {
+                let currentOpacity = parseFloat(gridRows.style.opacity);
+                if (currentOpacity < 1){
+                gridRows.style.opacity = (currentOpacity + 0.1).toFixed(1);
+                }
+                gridRows.classList.add('highlight');
             }
-    });  
-    }
+        );
+        }   
     }
 }
-
-
